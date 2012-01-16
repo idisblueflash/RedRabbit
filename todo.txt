@@ -2,7 +2,12 @@ Todo List of RedRabbit
 
  0% Basic/skeleton
 60% basic function/css/script
-    
+    EditMe
+      function Buttons
+        [ok] script 
+        [  ] imgs find
+      input Box
+      action Buttons
 90% animation/art/theme/css
     align divs all in center
 
