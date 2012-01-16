@@ -1,1 +1,14 @@
-div {border:gray solid thin;}
+div {
+  border:gray solid thin;
+  
+  }
+
+#listMe {
+  float: left;
+  width:45%;
+  }
+
+#previewMe {
+  float: left;
+  width:45%;
+  }
