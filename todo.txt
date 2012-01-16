@@ -1,0 +1,8 @@
+Todo List of RedRabbit
+
+ 0% Basic/skeleton
+60% basic function/css/script
+    
+90% animation/art/theme/css
+    align divs all in center
+
