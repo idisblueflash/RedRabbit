@@ -5,7 +5,7 @@ Todo List of RedRabbit
     EditMe
       function Buttons
         [ok] script 
-        [  ] imgs find
+        [ok] imgs find
       input Box
       action Buttons
 90% animation/art/theme/css
