@@ -12,3 +12,7 @@ div {
   float: left;
   width:45%;
   }
+
+textarea {
+  font-size:32px;
+  }
