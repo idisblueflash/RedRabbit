@@ -580,8 +580,33 @@ function addToList(){
    var msgPart = msg;
    var shell   = "<div id=step>" + msg + "</div>";
    $('#listMe').append(shell);
-  
-}
+  }
+
+/*
+# changeTempIcon function 
+#
+# change temp icon into picture/explain/sounds... icons
+#
+# caseMsg  - caseMsg value to choose right icon [picture, explain, sounds, video]
+#
+# example:
+#  changeTempIcon('picture');
+# Returns: change img.temp file into new png
+#          change img.temp value into new id
+*/
+function changeTempIcon(caseMsg){
+    var filename = "pic";
+    var newFile  = "img/" + filename + ".png";
+
+    debugSwitch = 1;
+    debug('newFile is:' + newFile);
+
+    $('#temp').attr("src",newFile);
+    $('#temp').attr("value","pic");
+
+  }
+
+
 
 /*
 # binding events for elements
@@ -591,24 +616,19 @@ function addToList(){
 # After everything is ok.
 */
  $(document).ready(function(){
-  // Reset Font Size
-   var originalFontSize = $('#smallFont').css('font-size');
-    $("#resetFont").click(function(){
-      $('#smallFont').css('font-size', originalFontSize);
-      });
-   // Increase Font Size
+   // add into listMe button 
    $("#add").click(function(){
      addToList('testing me');
      }
    );
-   // Decrease Font Size
-   $("#decreaseFont").click(function(){
-     var currentFontSize = $('#smallFont').css('font-size');
-     var currentFontSizeNum = parseFloat(currentFontSize, 10);
-     var newFontSize = currentFontSizeNum*0.8;
-     $('#smallFont').css('font-size', newFontSize);
-     return false;
-     });
+
+   
+   // change tmp icon when click pic
+   $('#picture').click(function(){
+     var myId = this.id;
+     changeTempIcon('myId');
+   });
+
 
  })
 
