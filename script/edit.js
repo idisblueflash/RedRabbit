@@ -575,7 +575,8 @@ function increaseFont(id){
 # Resets: add <div id=step>msg</div> INTO <div id=listMe>
 #
 */
-function addToList(msg){
+function addToList(){
+   var msg     = $('#inputbox')[0].value;
    var msgPart = msg;
    var shell   = "<div id=step>" + msg + "</div>";
    $('#listMe').append(shell);
