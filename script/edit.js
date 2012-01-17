@@ -570,15 +570,18 @@ function increaseFont(id){
 #
 # add edit input parts into List page
 #
+# msg     - messages inside inputbox
+# act     - action case: pic/exp/snd/avi...
+#
+#
 # Example:
-#  addToList();
+#  addToList(act,msg);
 # Resets: add <div id=step>msg</div> INTO <div id=listMe>
 #
 */
-function addToList(){
-   var msg     = $('#inputbox')[0].value;
-   var msgPart = msg;
-   var shell   = "<div id=step>" + msg + "</div>";
+function addToList(act,msg){
+   var icon    = "<img src='img/"+ act +".png' class='funcButtons'>";
+   var shell   = "<div id=step>" + icon+ msg + "</div>";
    $('#listMe').append(shell);
   }
 
@@ -618,7 +621,9 @@ function changeTempIcon(caseMsg){
  $(document).ready(function(){
    // add into listMe button 
    $("#add").click(function(){
-     addToList('testing me');
+     var msg     = $('#inputbox')[0].value;
+     var act     = $('#temp')[0].value;
+     addToList(act,msg);
      }
    );
 
