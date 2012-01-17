@@ -564,6 +564,24 @@ function increaseFont(id){
  
 }
 
+
+/*
+# addToList function
+#
+# add edit input parts into List page
+#
+# Example:
+#  addToList();
+# Resets: add <div id=step>msg</div> INTO <div id=listMe>
+#
+*/
+function addToList(msg){
+   var msgPart = msg;
+   var shell   = "<div id=step>" + msg + "</div>";
+   $('#listMe').append(shell);
+  
+}
+
 /*
 # binding events for elements
 */
@@ -578,8 +596,8 @@ function increaseFont(id){
       $('#smallFont').css('font-size', originalFontSize);
       });
    // Increase Font Size
-   $("#increaseFont").click(function(){
-     increaseFont('smallFont');
+   $("#add").click(function(){
+     addToList('testing me');
      }
    );
    // Decrease Font Size
