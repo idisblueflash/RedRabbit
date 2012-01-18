@@ -635,11 +635,11 @@ function changeTempIcon(caseMsg){
    });
 
   // heighlight when mouseover on listMe
-  $('div#steps').mouseover(function(){
+  $('div#steps').live( "mouseover", function(){
     $(this).addClass('heighlight');
     });
                        
-  $('div#steps').mouseout(function(){
+  $('div#steps').live( "mouseout", function(){
     $(this).removeClass('heighlight');
   });
 
