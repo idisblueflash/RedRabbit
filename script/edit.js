@@ -576,12 +576,12 @@ function increaseFont(id){
 #
 # Example:
 #  addToList(act,msg);
-# Resets: add <div id=step>msg</div> INTO <div id=listMe>
+# Resets: add <div id=steps>msg</div> INTO <div id=listMe>
 #
 */
 function addToList(act,msg){
    var icon    = "<img src='img/"+ act +".png' class='funcButtons'>";
-   var shell   = "<div id=step>" + icon+ msg + "</div>";
+   var shell   = "<div id=steps>" + icon+ msg + "</div>";
    $('#listMe').append(shell);
   }
 
@@ -634,6 +634,14 @@ function changeTempIcon(caseMsg){
      changeTempIcon('myId');
    });
 
+  // heighlight when mouseover on listMe
+  $('div#steps').mouseover(function(){
+    $(this).addClass('heighlight');
+    });
+                       
+  $('div#steps').mouseout(function(){
+    $(this).removeClass('heighlight');
+  });
 
  })
 

@@ -10,6 +10,8 @@ Todo List of RedRabbit
         [ok] script 
         [ok] bigger font inside inputbox
       action Buttons
+    listMe
+      heighlight of steps
 90% animation/art/theme/css
     align divs all in center
 
