@@ -14,6 +14,7 @@ div {
   }
 
 .heighlight { background-color: #8888FF }
+.selected   { background-color: #888888 }
 
 textarea {
   font-size:32px;

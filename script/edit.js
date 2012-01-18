@@ -643,6 +643,10 @@ function changeTempIcon(caseMsg){
     $(this).removeClass('heighlight');
   });
 
+  $('div#steps').live( "click", function(){
+    $(this).addClass('selected');
+  });
+
  })
 
 

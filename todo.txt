@@ -11,7 +11,10 @@ Todo List of RedRabbit
         [ok] bigger font inside inputbox
       action Buttons
     listMe
-      heighlight of steps
+      [ok] heighlight of steps
+      [  ] steps on click
+        [ ] change background
+        [ ] show in preview
 90% animation/art/theme/css
     align divs all in center
 
