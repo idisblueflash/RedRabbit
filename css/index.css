@@ -24,9 +24,6 @@ div {
 }
 
 #imgShowPicture {
-  position:absolute; 
-  top:20px;
-  left:10px;
   height:400px;
   display:block; 
   margin-left:auto; 
