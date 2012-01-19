@@ -655,6 +655,11 @@ function changeTempIcon(caseMsg){
     }
   });
 
+  // toggle picture and word when click
+  $('.imgshow').click(function(){
+    debug('imgShowPicture is clicked.');
+    $('.imgshow').toggle();
+  });
  })
 
 
