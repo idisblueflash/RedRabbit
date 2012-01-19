@@ -16,6 +16,12 @@ div {
 .heighlight { background-color: #8888FF }
 .selected   { background-color: #888888 }
 
+#imgShow {
+  background-color: #000000;
+  height:480px;
+  width:720px;
+}
+
 textarea {
   font-size:32px;
   }
