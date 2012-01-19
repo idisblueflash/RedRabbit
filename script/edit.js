@@ -656,7 +656,7 @@ function changeTempIcon(caseMsg){
   });
 
   // toggle picture and word when click
-  $('div#imgShow').click(function(){
+  $('img#imgShowConer').click(function(){
     debug('imgShowPicture is clicked.');
     $('.imgshow').toggle();
   });
