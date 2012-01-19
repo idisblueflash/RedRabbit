@@ -644,7 +644,15 @@ function changeTempIcon(caseMsg){
   });
 
   $('div#steps').live( "click", function(){
-    $(this).addClass('selected');
+    var selectFlag = $(this).attr('class');
+    // debug('select flag is:'+selectFlag);
+    var hasSelected = selectFlag.indexOf("selected");
+    // debug('indexOf is :'+ hasSelected);
+    if ( hasSelected < 0){
+      $(this).addClass('selected');
+    }else{
+      $(this).removeClass('selected');
+    }
   });
 
  })
