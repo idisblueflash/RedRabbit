@@ -581,7 +581,7 @@ function increaseFont(id){
 */
 function addToList(act,msg){
    var icon    = "<img src='img/"+ act +".png' class='funcButtons'>";
-   var shell   = "<div id=steps>" + icon+ msg + "</div>";
+   var shell   = "<div id=steps value=" + msg + ">" + icon+ msg + "</div>";
    $('#listMe').append(shell);
   }
 
@@ -653,6 +653,13 @@ function changeTempIcon(caseMsg){
     }else{
       $(this).removeClass('selected');
     }
+
+    // show preview
+    var imgWord = $(this)[0].textContent; 
+    debug('this step value is: '+ imgWord);
+    $('img#imgShowPicture').attr('src','img/words/' + imgWord + '.jpg');
+    $('h1#imgShowWord').html(imgWord);
+
   });
 
   // toggle picture and word when click
