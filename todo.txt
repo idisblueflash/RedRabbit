@@ -17,4 +17,5 @@ Todo List of RedRabbit
         [ ] show in preview
 90% animation/art/theme/css
     align divs all in center
+    align imgShowPicture with Vertical center
 

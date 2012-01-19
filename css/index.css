@@ -22,6 +22,15 @@ div {
   width:720px;
 }
 
+#imgShowPicture {
+  top:20px;
+  height:460px;
+  width:700px;
+  display:block; 
+  margin-left:auto; 
+  margin-right:auto; 
+
+}
 textarea {
   font-size:32px;
   }
