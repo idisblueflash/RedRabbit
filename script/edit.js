@@ -581,7 +581,7 @@ function increaseFont(id){
 */
 function addToList(act,msg){
    var icon    = "<img src='img/"+ act +".png' class='funcButtons'>";
-   var shell   = "<div id=steps value=" + msg + ">" + icon+ msg + "</div>";
+   var shell   = "<div id=" + msg  +"step value=" + msg + " class=steps>" + icon+ msg + "</div>";
    $('#listMe').append(shell);
   }
 
@@ -656,7 +656,7 @@ function showPreview(imgWord){
    });
 
   // heighlight when mouseover on listMe
-  $('div#steps').live( "mouseover", function(){
+  $('div.steps').live( "mouseover", function(){
     $(this).addClass('heighlight');
 
     // show preview
@@ -664,11 +664,11 @@ function showPreview(imgWord){
     showPreview(imgWord);
     });
                        
-  $('div#steps').live( "mouseout", function(){
+  $('div.steps').live( "mouseout", function(){
     $(this).removeClass('heighlight');
   });
 
-  $('div#steps').live( "click", function(){
+  $('div.steps').live( "click", function(){
     var selectFlag = $(this).attr('class');
     // debug('select flag is:'+selectFlag);
     var hasSelected = selectFlag.indexOf("selected");
@@ -701,7 +701,10 @@ function showPreview(imgWord){
 
   // trigger ppt icon when click
   $("#ppt").click(function(){
-    debug("ppt icon is clicked.");
+    // debug("ppt icon is clicked.");
+    var stepObjs  = $('.steps');
+    var stepArray = jQuery.makeArray(stepObjs);
+    debug(stepArray);
   });
  })
 
