@@ -41,8 +41,13 @@
     */
     function debug(msg){
       if ( debugSwitch ) {
-        $('#debug').append(msg);
-        $('#debug').append('<p>');
+        // $('#debug').append(msg);
+        // $('#debug').append('<p>');
+        
+        var oldText = $('#debug1').text();
+        var out = msg + '\r' + oldText;
+        $('#debug1').text( out );
+
       }
     }
 

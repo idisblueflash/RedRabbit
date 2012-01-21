@@ -108,23 +108,6 @@
         return reArray;
     }
     
-    /*
-    # debug Function
-    #
-    # show messages on debug div
-    #
-    # msg       - messages need to show
-    #
-    # example:
-    # debug('foxy');
-    # Returns: <div id=debug>foxy<p></div>
-    */
-    function debug(msg){
-      if ( debugSwitch ) {
-        $('#debug').append(msg);
-        $('#debug').append('<p>');
-      }
-    }
 
     /*
     # generate3moreOptions function
@@ -721,7 +704,7 @@ function showPreview(imgWord){
         debug('pptList: ' + pptList);
         });
     // toggle show/edit Panel 
-    $('.panel').toggle();
+    // $('.panel').toggle();
   });
 
   $('img#exitShowPanel').click(function(){
