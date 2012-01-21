@@ -580,7 +580,7 @@ function increaseFont(id){
 #
 */
 function addToList(act,msg){
-   var icon    = "<img src='img/"+ act +".png' class='funcButtons'>";
+   var icon    = "<img src='img/"+ act +".png' class='funcButtons' title='" + act + "' >";
    var shell   = "<div id=" + msg  +"step value=" + msg + " class=steps>" + icon+ msg + "</div>";
    $('#listMe').append(shell);
   }
@@ -702,9 +702,10 @@ function showPreview(imgWord){
   // trigger ppt icon when click
   $("#ppt").click(function(){
     // debug("ppt icon is clicked.");
-    var stepObjs  = $('.steps');
-    var stepArray = jQuery.makeArray(stepObjs);
-    debug(stepArray);
+    $('.steps').each(function(index) {
+        debug(index + ': ' + $(this).text());
+        debug('title is:' + $(this).find('img').attr('title'));
+        });
   });
  })
 
