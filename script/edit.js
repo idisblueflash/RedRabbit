@@ -621,6 +621,7 @@ function changeTempIcon(caseMsg){
  $(document).ready(function(){
    // add into listMe button 
    $("#add").click(function(){
+     
      var msg     = $('#inputbox')[0].value;
      var act     = $('#temp')[0].value;
      addToList(act,msg);
@@ -656,7 +657,7 @@ function changeTempIcon(caseMsg){
 
     // show preview
     var imgWord = $(this)[0].textContent; 
-    debug('this step value is: '+ imgWord);
+    // debug('this step value is: '+ imgWord);
     $('img#imgShowPicture').attr('src','img/words/' + imgWord + '.jpg');
     $('h1#imgShowWord').html(imgWord);
 
@@ -664,8 +665,19 @@ function changeTempIcon(caseMsg){
 
   // toggle picture and word when click
   $('img#imgShowConer').click(function(){
-    debug('imgShowPicture is clicked.');
+    // debug('imgShowPicture is clicked.');
     $('.imgshow').toggle();
+  });
+
+  // trigger Enter Key action in TextArea
+  $("#inputbox").keypress(function(event){
+    if( event.which ==13){
+      event.preventDefault();
+      var msg     = $('#inputbox')[0].value;
+      var act     = $('#temp')[0].value;
+      addToList(act,msg);
+      $(this).val('');
+      }
   });
  })
 
