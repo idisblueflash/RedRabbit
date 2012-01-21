@@ -694,6 +694,8 @@ function showPreview(imgWord){
   // trigger ppt icon when click
   $("#ppt").click(function(){
     // debug("ppt icon is clicked.");
+    // clean preview pptList
+    pptList = [];
     $('.steps').each(function(index) {
       var msg  = $(this).text();
       var act  = $(this).find('img').attr('title'); 
@@ -704,7 +706,7 @@ function showPreview(imgWord){
         debug('pptList: ' + pptList);
         });
     // toggle show/edit Panel 
-    // $('.panel').toggle();
+    $('.panel').toggle();
   });
 
   $('img#exitShowPanel').click(function(){
