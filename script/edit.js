@@ -719,9 +719,14 @@ function showPreview(imgWord){
       var pptElement = {"act": act,"text":msg};
         pptList.push(pptElement);
         debug('pptList: ' + pptList);
-
         });
+    // toggle show/edit Panel 
+    $('.panel').toggle();
   });
+
+  $('img#exitShowPanel').click(function(){
+    $('.panel').toggle();
+    });
  })
 
 
