@@ -636,9 +636,12 @@ function showPreview(imgWord){
 # After everything is ok.
 */
  $(document).ready(function(){
+   // debug swith
+    debugSwitch = 1;
+
    // add into listMe button 
    $("#add").click(function(){
-     
+     debug('add is clicked.'); 
      var msg     = $('#inputbox')[0].value;
      var act     = $('#temp')[0].value;
      addToList(act,msg);
@@ -694,6 +697,11 @@ function showPreview(imgWord){
       addToList(act,msg);
       $(this).val('');
       }
+  });
+
+  // trigger ppt icon when click
+  $("#ppt").click(function(){
+    debug("ppt icon is clicked.");
   });
  })
 
