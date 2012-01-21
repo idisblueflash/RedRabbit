@@ -5,11 +5,10 @@ div {
 
 #listMe {
   float: left;
-  width:45%;
+  width:90%;
   }
 
 #previewMe {
-  width:45%;
   }
 
 .heighlight { background-color: #8888FF }
@@ -46,6 +45,8 @@ div {
 
 #inputbox{
   font-size:32px;
+  height:55px;
+  width: 80%;
   }
 
 #editpanel{
