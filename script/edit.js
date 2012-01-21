@@ -609,6 +609,23 @@ function changeTempIcon(caseMsg){
 
   }
 
+/*
+# showPreview()
+#
+# show selected step in preview
+#
+# imgWord   - word need to use for image card
+#
+# example:
+#  showPreview(imgWord);
+# Returns: show selected step in preview div
+#
+*/
+function showPreview(imgWord){
+    // debug('this step value is: '+ imgWord);
+    $('img#imgShowPicture').attr('src','img/words/' + imgWord + '.jpg');
+    $('h1#imgShowWord').html(imgWord);
+}
 
 
 /*
@@ -638,6 +655,10 @@ function changeTempIcon(caseMsg){
   // heighlight when mouseover on listMe
   $('div#steps').live( "mouseover", function(){
     $(this).addClass('heighlight');
+
+    // show preview
+    var imgWord = $(this)[0].textContent; 
+    showPreview(imgWord);
     });
                        
   $('div#steps').live( "mouseout", function(){
@@ -655,11 +676,6 @@ function changeTempIcon(caseMsg){
       $(this).removeClass('selected');
     }
 
-    // show preview
-    var imgWord = $(this)[0].textContent; 
-    // debug('this step value is: '+ imgWord);
-    $('img#imgShowPicture').attr('src','img/words/' + imgWord + '.jpg');
-    $('h1#imgShowWord').html(imgWord);
 
   });
 
