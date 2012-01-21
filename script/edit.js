@@ -706,7 +706,7 @@ function showPreview(imgWord){
         debug('pptList: ' + pptList);
         });
     // toggle show/edit Panel 
-    $('.panel').toggle();
+    $('.panel').toggle('slow');
   });
 
   $('img#exitShowPanel').click(function(){

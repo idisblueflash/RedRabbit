@@ -1,6 +1,5 @@
 div {
   border:gray solid thin;
-  
   }
 
 #listMe {
@@ -53,4 +52,15 @@ div {
  width: 1200px ;
  margin-left: auto ;
  margin-right: auto ;
+}  
+
+#showpanel{
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #000000;
+  z-index: 1;
 }  
