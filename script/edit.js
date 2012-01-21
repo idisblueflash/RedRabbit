@@ -2,10 +2,19 @@
   PICTURE EXAM SYSTEM
 */
 
+  /*
+  # init ppt page list
+  */
+  var pptList; 
+  pptList = [
+    {"act": "pic", "text":"apple"}
+  ];
+
    var debugSwitch = 0 ;
     /*
     # init  words
     */
+
     var wordGroups = new Array();
     wordGroups = [
         { "level" : 1,  "type" : "animal",              "words" : 
@@ -703,8 +712,14 @@ function showPreview(imgWord){
   $("#ppt").click(function(){
     // debug("ppt icon is clicked.");
     $('.steps').each(function(index) {
-        debug(index + ': ' + $(this).text());
-        debug('title is:' + $(this).find('img').attr('title'));
+      var msg  = $(this).text();
+      var act  = $(this).find('img').attr('title'); 
+        debug(index + ': ' + msg);
+        debug('title is:'  + act); 
+      var pptElement = {"act": act,"text":msg};
+        pptList.push(pptElement);
+        debug('pptList: ' + pptList);
+
         });
   });
  })
