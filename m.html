@@ -5,6 +5,8 @@
   <link rel="stylesheet" href="css/jquery.mobile-1.0.min.css" />
   <script src="script/jquery-1.6.1.js"></script>
   <script src="script/jquery.mobile-1.0.min.js"></script>
+  <script src="script/examlib.js"></script>
+  <script src="script/ppt.js"></script>
 </head> 
 <body> 
  
@@ -24,7 +26,6 @@
     <h1>New PPT's Name</h1>
   </div>
   <div data-role="content">
-    <p>This is a fast PPT maker for teachers.</p>
     <form action="#" method="get">
      
      <div data-role="fieldcontain">
@@ -32,11 +33,15 @@
        <input type="text" name="name" id="name" value=""  />
      </div>
 
-     <fieldset class="ui-grid-a">
-        <div class="ui-block-b"><button type="submit" data-theme="a">OK</button></div>     
-     </fieldset>
+     <div class="ui-body ui-body-b">
+      <fieldset class="ui-grid-a">
+        <div class="ui-block-a"><button type="submit" data-theme="d">Cancel</button></div>
+        <div class="ui-block-b"><button id=newPPT type="submit" data-theme="a">New</button></div>     
+      </fieldset>
+      <p id=debug>debug:</p>
+     </div>
+
     </form>
-    <a href="#home" data-role="button">Cancel</a>
   </div>
 </div>
 
