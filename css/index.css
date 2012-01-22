@@ -7,8 +7,6 @@ div {
   width:90%;
   }
 
-#previewMe {
-  }
 
 .heighlight { background-color: #8888FF }
 .selected   { background-color: #888888 }
@@ -30,8 +28,24 @@ div {
 #imgShowConer 
 { position:absolute; top: 80%; left: 80%; z-index: 3; } 
 
-#preSlide
-{ position:absolute; top: 50%; left: 5%; z-index: 3; } 
+.preButton {
+  background-image: url(../img/preSlide.png);
+  background-repeat: no-repeat;
+
+  border: none;
+  cursor:pointer;
+  width: 48px;
+  height: 600px;
+  text-indent: -9999px;
+}
+
+#pptShow {
+  width:90%;
+  height:100%;
+  display:block; 
+  margin-left:auto; 
+  margin-right:auto; 
+}
 
 #nextSlide
 { position:absolute; top: 50%; left: 90%; z-index: 3; } 
