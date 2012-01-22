@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+  <title>RedRabbit: A fast PPT maker for teachers.</title> 
+  <link rel="stylesheet" href="css/jquery.mobile-1.0.min.css" />
+  <script src="script/jquery-1.6.1.js"></script>
+  <script src="script/jquery.mobile-1.0.min.js"></script>
+</head> 
+<body> 
+ 
+<div data-role="page" id="home">
+  <div data-role="header">
+    <h1>Red Rabbit</h1>
+  </div>
+ 
+  <div data-role="content"> 
+    <p>Make your PPT on the fly.</p>    
+    <p><a href="#newPPT" data-role="button">New PPT</a></p>
+  </div>
+</div>
+
+<div data-role="page" id="newPPT">
+  <div data-role="header">
+    <h1>New PPT's Name</h1>
+  </div>
+  <div data-role="content">
+    <p>This is a fast PPT maker for teachers.</p>
+    <form action="#" method="get">
+     
+     <div data-role="fieldcontain">
+       <label for="name">PPT Name:</label>
+       <input type="text" name="name" id="name" value=""  />
+     </div>
+
+     <fieldset class="ui-grid-a">
+        <div class="ui-block-b"><button type="submit" data-theme="a">OK</button></div>     
+     </fieldset>
+    </form>
+    <a href="#home" data-role="button">Cancel</a>
+  </div>
+</div>
+
+
+ 
+</body>
+</html>
