@@ -9,7 +9,24 @@ PPTs.dataContext = (function($){
     loadPPTsFromLocalStorage();
   };
   
-  
+  var savePPT = function (pptModel){
+    var found = false;
+    var i;
+
+    for (i = 0; i < pptsList.length; i += 1) {
+        if (pptsList[i].id === pptModel.id) {
+            pptsList[i] = pptModel;
+            found = true;
+            i = pptsList.length;
+        }
+    }
+
+    if (!found) {
+        pptsList.splice(0, 0, pptModel);
+    }
+
+    savePPTsToLocalStorage();    
+  }; 
 
   var getPPTsList = function(){
     return pptsList;
@@ -30,6 +47,10 @@ PPTs.dataContext = (function($){
 
   // Private Functions
 
+  function savePPTsToLocalStorage(){
+    $.jStorage.set(pptsListStorageKey, pptsList);
+  }
+
   function getRandomInt(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -38,12 +59,16 @@ PPTs.dataContext = (function($){
     var storedPPTs = $.jStorage.get(pptsListStorageKey);
     if(storedPPTs !== null){
       pptsList = storedPPTs;
+    } else {
+      pptsList = [];
     }
+
   }
 
 
   return {
     init: init,
+    savePPT: savePPT,
     createBlankPPT: createBlankPPT,
     getPPTsList: getPPTsList
   }

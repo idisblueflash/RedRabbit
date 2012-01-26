@@ -6,13 +6,42 @@ PPTs.controller = (function ($, dataContext){
   var pptEditorPageId = "ppt-editor-page";
   var pptTitleEditorSel = "[name=ppt-title-editor]";
   var pptNarrativeEditorSel = "[name=ppt-narrative-editor]";
+  var savePPTButtonSel = "#save-ppt-button";
 
   var init = function(storageKey) {
     dataContext.init(storageKey);
     var d = $(document);
     d.bind ("pagebeforechange", onPageBeforeChange);
     d.bind ("pagechange", onPageChange);
+    d.delegate(savePPTButtonSel, "tap", onSavePPTButtonTapped);
   };
+
+  function onSavePPTButtonTapped(){
+
+    // Validate note.
+    var titleEditor = $(pptTitleEditorSel);
+    var narrativeEditor = $(pptNarrativeEditorSel);
+    var tempPPT = dataContext.createBlankPPT();
+
+    tempPPT.title = titleEditor.val();
+    tempPPT.narrative = narrativeEditor.val();
+
+    if (tempPPT.isValid()) {
+
+      if (null !== currentPPT) {
+        currentPPT.title = tempPPT.title;
+        currentPPT.narrative = tempPPT.narrative;
+      } else {
+        currentPPT = tempPPT;
+      }
+
+        dataContext.savePPT(currentPPT);
+        returnToPPTsListPage();
+
+      } else {
+        // TODO: Inform the user the ppt is invalid.
+      }    
+  }
 
   function onPageBeforeChange(event, data){
     if (typeof data.toPage === "string"){

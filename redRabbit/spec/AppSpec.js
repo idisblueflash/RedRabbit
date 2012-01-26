@@ -31,6 +31,38 @@ describe("DataContext Test", function(){
 
     var pptsList = PPTs.dataContext.getPPTsList();
     expect(pptsList.length > 0 ).toBeTruthy();
+    $.jStorage.deleteKey(pptsListStorageKey);
   });
+
+  it("Make sure LS is empty before the test", function(){
+    $.jStorage.deleteKey(pptsListStorageKey);
+    var pptsList = $.jStorage.get(pptsListStorageKey);
+    expect(pptsList).toBeNull();
+  });
+
+  it("Create a ppt", function(){
+    $.jStorage.deleteKey(pptsListStorageKey);
+    var pptsList = $.jStorage.get(pptsListStorageKey);
+    expect(pptsList).toBeNull();
+
+    var dateCreated = new Date();
+    var id = dateCreated.getTime().toString();
+    var pptModel = new PPTs.PPTModel({
+      id: id,
+      dateCreated: dateCreated,
+      title: ""
+    });
+    
+    PPTs.dataContext.init(pptsListStorageKey);
+    PPTs.dataContext.savePPT(pptModel);
+    // Should retrieve the saved ppt.
+    pptsList = $.jStorage.get(pptsListStorageKey);
+    var expectedPPT = pptsList[0];
+    expect(expectedPPT.title === "").toBeTruthy();
+
+    // Clean up
+    $.jStorage.deleteKey(pptsListStorageKey);
+  });
+
 
 });
