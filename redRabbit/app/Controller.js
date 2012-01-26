@@ -158,3 +158,7 @@ PPTs.controller = (function ($, dataContext){
     init: init
   }
 })(jQuery, PPTs.dataContext);
+
+$(document).bind("mobileinit", function(){
+  PPTs.controller.init("PPTs.PPTsListTest");
+});
