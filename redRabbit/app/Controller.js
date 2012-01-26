@@ -9,6 +9,10 @@ PPTs.controller = (function ($, dataContext){
   var savePPTButtonSel = "#save-ppt-button";
   var invalidPPTDlgSel = "#invalid-ppt-dialog";
   var defaultDlgTrsn = { transition: "slideup"};
+  var confirmDeletePPTDlgSel = "#confirm-delete-ppt-dialog";
+  var deletePPTButtonSel = "#delete-ppt-button";
+  var deletePPTContentPlaceholderSel = "#delete-ppt-content-placeholder";
+  var okToDeletePPTButtonSel = "#ok-to-delete-ppt-button";
 
   var init = function(storageKey) {
     dataContext.init(storageKey);
@@ -16,7 +20,23 @@ PPTs.controller = (function ($, dataContext){
     d.bind ("pagebeforechange", onPageBeforeChange);
     d.bind ("pagechange", onPageChange);
     d.delegate(savePPTButtonSel, "tap", onSavePPTButtonTapped);
+    d.delegate(deletePPTButtonSel, "tap", onDeletePPTButtonTapped);
   };
+
+  function onDeletePPTButtonTapped(){
+    if (currentPPT) {
+        // Render selected ppt in confirmation dlg.
+        // Deletion will be handled elsewhere, after user confirms it's ok to delete.
+
+        var pptContentPlaceholder = $(deletePPTContentPlaceholderSel);
+
+        pptContentPlaceholder.empty();
+        $("<h3>" + currentPPT.title + "</h3><div>" 
+        + currentPPT.narrative + "</div>").appendTo(pptContentPlaceholder);
+
+        $.mobile.changePage(confirmDeletePPTDlgSel, defaultDlgTrsn);
+    }    
+  }
 
   function onSavePPTButtonTapped(){
 
