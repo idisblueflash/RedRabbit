@@ -51,6 +51,10 @@ PPTs.dataContext = (function($){
     $.jStorage.set(pptsListStorageKey, pptsList);
   }
 
+  function returnToPPTsListPage(){
+    $.mobile.changePage("#" + pptsListPageId, { transition: "slide", reverse: true});
+  }
+
   function getRandomInt(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }

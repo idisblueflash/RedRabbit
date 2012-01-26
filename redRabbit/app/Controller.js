@@ -62,6 +62,7 @@ PPTs.controller = (function ($, dataContext){
 
     switch (toPageId){
       case pptsListPageId:
+        resetCurrentPPT();
         renderPPTsList();
         break;
       case pptEditorPageId:
@@ -70,6 +71,10 @@ PPTs.controller = (function ($, dataContext){
         }
         break;
     }
+  }
+
+  function resetCurrentPPT(){
+    currentPPT = null;
   }
 
   function renderSelectedPPT(data){
