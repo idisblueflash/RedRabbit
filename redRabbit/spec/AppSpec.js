@@ -22,4 +22,13 @@ describe("DataContext Test", function(){
   it("Has init function", function (){
     expect(PPTs.dataContext.init).toBeDefined();
   });
+
+  it("Returns dummy ppts saved in local storage", function(){
+    PPTs.testHelper.createDummyPPTs();
+    PPTs.dataContext.init();
+
+    var pptsList = PPTs.dataContext.getPPTsList();
+    expect(pptsList.length > 0 ).toBeTruthy();
+  });
+
 });
