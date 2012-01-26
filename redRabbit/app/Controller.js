@@ -7,6 +7,8 @@ PPTs.controller = (function ($, dataContext){
   var pptTitleEditorSel = "[name=ppt-title-editor]";
   var pptNarrativeEditorSel = "[name=ppt-narrative-editor]";
   var savePPTButtonSel = "#save-ppt-button";
+  var invalidPPTDlgSel = "#invalid-ppt-dialog";
+  var defaultDlgTrsn = { transition: "slideup"};
 
   var init = function(storageKey) {
     dataContext.init(storageKey);
@@ -39,7 +41,7 @@ PPTs.controller = (function ($, dataContext){
         returnToPPTsListPage();
 
       } else {
-        // TODO: Inform the user the ppt is invalid.
+        $.mobile.changePage(invalidPPTDlgSel, defaultDlgTrsn);
       }    
   }
 
