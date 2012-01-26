@@ -18,4 +18,8 @@ describe("DataContext Test", function(){
     expect(blankPPT.title.length === 0 ).toBeTruthy();
     expect(blankPPT.narrative.length === 0 ).toBeTruthy();
   });
+
+  it("Has init function", function (){
+    expect(PPTs.dataContext.init).toBeDefined();
+  });
 });

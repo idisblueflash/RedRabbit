@@ -4,6 +4,10 @@ PPTs.dataContext = (function(){
 
   var pptsList = [];
   
+  var init = function (){
+    loadPPTsFromLocalStorage();
+  };
+  
   var getPPTsList = function(){
     return pptsList;
   };
@@ -26,6 +30,7 @@ PPTs.dataContext = (function(){
   }
 
   return {
+    init: init,
     createBlankPPT: createBlankPPT,
     getPPTsList: getPPTsList
   }
