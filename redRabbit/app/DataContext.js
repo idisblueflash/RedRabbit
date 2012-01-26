@@ -45,6 +45,19 @@ PPTs.dataContext = (function($){
     return pptModel;
   }; 
 
+  var deletePPT = function (pptModel) {
+
+    var i;
+    for (i = 0; i < pptsList.length; i += 1) {
+        if (pptsList[i].id === pptModel.id) {
+            pptsList.splice(i, 1);
+            i = pptsList.length;
+        }
+    }
+
+    savePPTsToLocalStorage();
+  };
+
   // Private Functions
 
   function savePPTsToLocalStorage(){
@@ -68,12 +81,18 @@ PPTs.dataContext = (function($){
     }
 
   }
+  function onOKToDeletePPTButtonTapped(){
+    dataContext.deletePPT(currentPPT);
+    returnToPPTListPage();
+  }
+
 
 
   return {
     init: init,
-    savePPT: savePPT,
     createBlankPPT: createBlankPPT,
-    getPPTsList: getPPTsList
+    getPPTsList: getPPTsList,
+    savePPT: savePPT,
+    deletePPT: deletePPT
   }
 })(jQuery);

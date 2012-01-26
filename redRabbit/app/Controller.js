@@ -21,7 +21,17 @@ PPTs.controller = (function ($, dataContext){
     d.bind ("pagechange", onPageChange);
     d.delegate(savePPTButtonSel, "tap", onSavePPTButtonTapped);
     d.delegate(deletePPTButtonSel, "tap", onDeletePPTButtonTapped);
+    d.delegate(okToDeletePPTButtonSel, "tap", onOKToDeletePPTButtonTapped);
   };
+
+  function onOKToDeletePPTButtonTapped(){
+    dataContext.deletePPT(currentPPT);
+    returnToPPTsListPage();
+  }
+  function returnToPPTsListPage () {
+    $.mobile.changePage("#" + pptsListPageId,
+    { transition: "slide", reverse: true });
+  }
 
   function onDeletePPTButtonTapped(){
     if (currentPPT) {

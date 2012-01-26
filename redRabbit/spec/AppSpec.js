@@ -64,5 +64,36 @@ describe("DataContext Test", function(){
     $.jStorage.deleteKey(pptsListStorageKey);
   });
 
+  it("Removes a ppt from local storage", function(){
+          // Create a ppt.
+        var dateCreated = new Date();
+        var id = new String(dateCreated.getTime());
+        var pptModel = new PPTs.PPTModel({
+            id: id,
+            dateCreated: dateCreated,
+            title: "",
+            narrative: ""
+        });
+
+        // Start with an empty ppts list.
+        var pptsList = [];
+        // Add ppt to local storage.
+        pptsList.push(pptModel);
+        $.jStorage.set(pptsListStorageKey, pptsList);
+        pptsList = $.jStorage.get(pptsListStorageKey);
+        expect(pptsList.length).toEqual(1);
+
+        // Proceed to delete.
+        PPTs.dataContext.init(pptsListStorageKey);
+        PPTs.dataContext.deletePPT(pptModel);
+
+        // Should retrieve empty array
+        pptsList = $.jStorage.get(pptsListStorageKey);
+        expect(pptsList.length).toEqual(0);
+
+        // Clean up
+        $.jStorage.deleteKey(pptsListStorageKey);
+
+  });
 
 });
