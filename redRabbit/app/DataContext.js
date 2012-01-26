@@ -1,10 +1,11 @@
 var PPTs = PPTs || {};
 
-PPTs.dataContext = (function(){
+PPTs.dataContext = (function($){
   var pptsList = [];
-  var pptsListStorageKey = "PPTs.PPTsList";
+  var pptsListStorageKey; 
   
-  var init = function (){
+  var init = function (storageKey){
+    pptsListStorageKey = storageKey;
     loadPPTsFromLocalStorage();
   };
   
@@ -46,4 +47,4 @@ PPTs.dataContext = (function(){
     createBlankPPT: createBlankPPT,
     getPPTsList: getPPTsList
   }
-})();
+})(jQuery);

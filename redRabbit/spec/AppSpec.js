@@ -1,5 +1,7 @@
 describe("DataContext Test", function(){
 
+  var pptsListStorageKey = "PPTs.PPTsListTest";
+
   it("Defines the dataContext", function(){
     expect(PPTs.dataContext).toBeDefined;
   });
@@ -24,8 +26,8 @@ describe("DataContext Test", function(){
   });
 
   it("Returns dummy ppts saved in local storage", function(){
-    PPTs.testHelper.createDummyPPTs();
-    PPTs.dataContext.init();
+    PPTs.testHelper.createDummyPPTs(pptsListStorageKey);
+    PPTs.dataContext.init(pptsListStorageKey);
 
     var pptsList = PPTs.dataContext.getPPTsList();
     expect(pptsList.length > 0 ).toBeTruthy();

@@ -1,6 +1,7 @@
 PPTs.testHelper = (function(){
-  var createDummyPPTs = function(){
-    var pptsListStorageKey = "PPTs.PPTsList";
+  
+  
+  var createDummyPPTs = function(pptsListStorageKey){
     var pptsCount = 10;
     var ppts = [];
 
