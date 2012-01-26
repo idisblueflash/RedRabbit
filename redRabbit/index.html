@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>PPTs App</title>
+
+
+  <!-- include jQuery files here... -->
+  <script type="text/javascript" src="../lib/jqm/jquery-1.6.1.js"></script>
+
+
+  <!-- include jStrogage files here... -->
+  <script type="text/javascript" src="../lib/jstorage/jstorage.js"></script>
+
+  <!-- include source files here... -->
+  <link rel="stylesheet" type="text/css" href="css/app.css">
+  <script type="text/javascript" src="app/DataContext.js"></script>
+  <script type="text/javascript" src="app/PPTModel.js"></script>
+  <script type="text/javascript" src="spec/TestHelper.js"></script>
+  <script type="text/javascript" src="app/Controller.js"></script>
+
+  <!-- bind mobileinit here... -->
+  <script>
+    $(document).bind("mobileinit", function(){
+      PPTs.testHelper.createDummyPPTs();
+      PPTs.controller.init();
+    });
+  </script>
+
+  <!-- include jQuery Mobile files here... -->
+  <script type="text/javascript" src="../lib/jqm/jquery.mobile-1.0.js"></script>
+  <link rel="stylesheet" type="text/css" href="../lib/jqm/jquery.mobile-1.0.css">
+
+</head>
+
+<body>
+  <!-- My PPTs Page -->
+  <div data-role="page" id="ppts-list-page" data-title="My PPTs">
+    <div data-role="header" data-position="fixed">
+      <h1>My PPTs</h1>
+      <a href="#ppt-editor-page" class="ui-btn-right" data-theme="b" data-icon="plus">New</a>
+    </div>
+    <div data-role="content" id="ppts-list-content">
+    </div>
+  </div>
+
+  <!-- Edit PPT Page -->
+  <div data-role="page" id="ppt-editor-page" data-title="Edit PPT">
+    <div data-role="header" data-position="fixed">
+      <a href="#ppts-list-page" data-icon="back" data-rel="back">Cancel</a>
+      <h1>Edit PPT</h1>
+      <a id="save-ppt-button" href="" data-theme="b" data-icon="check">Save</a>
+    </div>
+    <div data-role="content">
+      <form action="" method="post" id="ppt-editor-form">
+        <label for="ppt-title-editor">Title:</label>
+        <input type="text" name="ppt-title-editor" id="ppt-title-editor" value="" />
+        <label for="ppt-narrative-editor">Narrative:</label>
+        <textarea type="text" name="ppt-narrative-editor" id="ppt-narrative-editor" value=""></textarea>
+      </form>
+    </div>
+    <div data-role="footer" data-position="fixed" class="ui-bar">
+      <a id="delete-ppt-button" data-icon="delete" data-transition="slideup" data-rel="dialog">Delete</a>
+    </div>
+  </div>
+
+  <!-- Invalid PPT dialog -->
+  <div id="invalid-ppt-dialog" data-role="dialog" data-title="Invaid PPT" data-theme="e">
+    <div data-role="header" data-theme="e">
+      <h1>Wait!</h1>
+    </div>
+    <div data-role="content">
+      Enter a title for thie ppt.
+    </div>
+  </div>
+
+  <!-- confirm Delete PPT dialog -->
+  <div id="confirm-delete-ppt-dialog" data-role="dialog" data-title="Delete PPT">
+    <div data-role="header">
+      <h1>Delete PPT?</h1>
+    </div>
+    <div data-role="content">
+      <div id="delete-ppt-content-placeholder"></div>
+      <a id="cancel-delete-ppt-button" data-role="button" data-theme="b" data-rel="back">No</a>
+      <a id="ok-to-delete-ppt-button" data-role="button" data-theme="f">Yes</a>
+    </div>
+  </div>
+</body>
+</html>
