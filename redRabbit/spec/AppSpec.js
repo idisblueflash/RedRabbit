@@ -93,7 +93,16 @@ describe("DataContext Test", function(){
 
         // Clean up
         $.jStorage.deleteKey(pptsListStorageKey);
+  });
 
+  it("Slides exists in the app", function(){
+    expect(Slides.dataContext).toBeDefined();
+  });
+
+  it("Returns slides Array", function(){
+    var slidesList = Slides.dataContext.getSlidesList();
+    expect(slidesList instanceof Array).toBeTruthy();
   });
 
 });
+

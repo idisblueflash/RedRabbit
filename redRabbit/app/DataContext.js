@@ -91,3 +91,16 @@ PPTs.dataContext = (function($){
     deletePPT: deletePPT
   }
 })(jQuery);
+
+var Slides = Slides || {};
+Slides.dataContext = (function($){
+  var slidesList = [];
+
+  var getSlidesList = function(){
+    return slidesList;
+  };
+
+  return {
+    getSlidesList: getSlidesList 
+  }
+})(jQuery);
