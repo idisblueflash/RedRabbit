@@ -204,6 +204,11 @@ Slides.controller = (function ($, dataContext){
   var saveSlideButtonSel = "#save-slide-button";
   var invalidSlideDlgSel = "#invalid-slide-dialog";
   var defaultDlgTrsn = { transition: "slideup"} ;
+  var confirmDeleteSlideDlgSel = "#confirm-delete-slide-dialog";
+  var deleteSlideButtonSel = "#delete-slide-button";
+  var deleteSlideContentPlaceholderSel = "#delete-slide-content-placeholder";
+  var okToDeleteSlideButtonSel = "#ok-to-delete-slide-button";
+
 
   var init = function(storageKey){
     dataContext.init(storageKey);
@@ -212,9 +217,24 @@ Slides.controller = (function ($, dataContext){
     d.bind("pagebeforechange", onPageBeforeChange);
     d.bind("pagechange", onPageChange);
     d.delegate(saveSlideButtonSel, "tap", onSaveSlideButtonTapped);
+    d.delegate(deleteSlideButtonSel, "tap", onDeleteSlideButtonTapped);
   };
 
   // Private functions
+  
+  function onDeleteSlideButtonTapped(){
+    if (currentSlide){
+      // Render seleted slide in confirmation dlg.
+      // Deletion will be handled elsewise, after user confirms it's ok to delete.
+      var slideContentPlaceholder = $(deleteSlideContentPlaceholderSel);
+      slideContentPlaceholder.empty();
+      $("<h3>" + currentSlide.title + "</h3>"
+      + "<div>" + currentSlide.type + "</div>"
+      ).appendTo(slideContentPlaceholder)
+      $.mobile.changePage(confirmDeleteSlideDlgSel, defaultDlgTrsn);
+    }
+  }
+
   function onSaveSlideButtonTapped (){
     // Validate slide.
     var titleEditor = $(slideTitleEditorSel);
