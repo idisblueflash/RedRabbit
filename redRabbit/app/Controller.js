@@ -340,6 +340,7 @@ Slides.controller = (function ($, dataContext){
         $("<li>"
         + "<a data-url=\"index.html#slide-editor-page?slideId=" + slide.id
         + "\" href=\"index.html#slide-editor-page?slideId=" + slide.id + "\">"
+        + "<div class=\"list-item-title\">" + slide.title+ "</div>"
         + "<div class=\"list-item-type\">" + slide.type + "</div>"
         + "</a>"
         + "</li>").appendTo(ul);
