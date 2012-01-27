@@ -93,5 +93,26 @@
     </div>
   </div>
 
+  <!-- Slide Eidtor Page -->
+  <div data-role="page" id="slide-editor-page" data-title="Edit Slide">
+    <div data-role="header" data-position="fixed">
+      <a href="#slides-list-page" data-icon="back" data-rel="back">Cancel</a>
+      <h1>Edit Slide</h1>
+      <a id="save-slide-button" href="" data-theme="b" data-icon="check">Save</a>
+    </div>
+    <div data-role="content">
+      <form action="" method="post" id="slide-editor-form">
+        <label for="slide-title-editor">Title:</label>
+        <input type="text" name="slide-title-editor" id="slide-title-editor" value="" />
+        <label for="slide-type-editor">Type:</label>
+        <textarea type="text" name="slide-type-editor" id="slide-type-editor" value=""></textarea>
+      </form>
+    </div>
+    <div data-role="footer" data-position="fixed" class="ui-bar">
+          <a id="delete-slide-button" data-icon="delete" data-transition="slideup" data-rel="dialog">Delete</a>
+    </div>
+  </div>
+
+
 </body>
 </html>
