@@ -223,7 +223,7 @@ Slides.controller = (function ($, dataContext){
 
   // Private functions
 
-  function onOKToDeletePPTButtonTapped(){
+  function onOKToDeleteSlideButtonTapped(){
     dataContext.deleteSlide(currentSlide);
     returnToSlidesListPage();
   }
@@ -259,13 +259,13 @@ Slides.controller = (function ($, dataContext){
       }
 
       dataContext.saveSlide(currentSlide);
-      returnToSlideListPage();
+      returnToSlidesListPage();
       } else {
         $.mobile.changePage(invalidSlideDlgSel, defaultDlgTrsn);
       }
   }
 
-  function returnToSlideListPage(){
+  function returnToSlidesListPage(){
     $.mobile.changePage("#" + slidesListPageId, { transition: "slide", reverse: true});
   }
 
