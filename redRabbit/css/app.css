@@ -4,6 +4,12 @@
   font-weight: normal;
 }
 
+.list-item-type
+{
+  color: #666666;
+  font-weight: normal;
+}
+
 .ui-btn-up-f {
 	border: 1px solid #c1272d /*{f-bup-border}*/;
 	background: #c1272d /*{f-bup-background-color}*/;

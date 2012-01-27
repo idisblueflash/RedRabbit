@@ -100,8 +100,9 @@ Slides.dataContext = (function($){
   var slidesList = [];
   var slidesListStorageKey = "Slides.SlidesList";
   
-  var init = function(){
-    loadSlidesFromLocalStorage();
+  var init = function(storageKey){
+    slidesListStorageKey = storageKey;
+    loadSlidesFromLocalStorage(slidesListStorageKey);
   };
 
   var createBlankSlide = function(){

@@ -193,6 +193,61 @@ PPTs.controller = (function ($, dataContext){
   }
 })(jQuery, PPTs.dataContext);
 
+Slides.controller = (function ($, dataContext){
+  var slidesListSelector = "#slides-list-content";
+  var noSlidesCachedMsg = "<div>No Slides cached.</div>";
+  var slidesListPageId = "slides-list-page";
+  var currentSlide = null;
+
+  var init = function(storageKey){
+    Slides.testHelper.createDummySlides(storageKey);
+    dataContext.init(storageKey);
+    var d = $(document);
+    d.bind("pagechange", onPageChange);
+  };
+
+  // Private functions
+  function onPageChange(event, data){
+    var toPageId = data.toPage.attr("id");
+    switch(toPageId){
+      case slidesListPageId:
+        renderSlidesList();
+        break;
+    }
+  }
+
+  function renderSlidesList(){
+    var slidesList = dataContext.getSlidesList();
+    var view = $(slidesListSelector);
+    view.empty();
+
+    if(slidesList.length === 0){
+      // No data in LS
+      $(noSlidesCachedMsg).appendTo(view);
+    } else {
+      // Has some datas in LS
+      var slidesCount = slidesList.length;
+      var slide;
+      var ul = $("<ul id=\"slides-list\" data-role=\"listview\"></ul>").appendTo(view);
+
+      for (var i = 0; i < slidesCount; i++){
+        slide = slidesList[i];
+        $("<li>"
+        + "<a data-url=\"index.html#slide-editor-page?slideId=" + slide.id
+        + "\" href=\"index.html#slide-editor-page?slideId=" + slide.id + "\">"
+        + "<div class=\"list-item-type\">" + slide.type + "</div>"
+        + "</a>"
+        + "</li>").appendTo(ul);
+      }
+      ul.listview();
+    }
+  }
+  
+  return {
+    init: init
+  }
+})(jQuery, Slides.dataContext);
 $(document).bind("mobileinit", function(){
   PPTs.controller.init("PPTs.PPTsList");
+  Slides.controller.init("Slides.SlidesList");
 });
