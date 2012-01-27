@@ -127,4 +127,33 @@ describe("Slides.dataContext Test", function(){
     expect(slidesList.length > 0).toBeTruthy();
   });
 
+  it("Save a slide to local storage", function(){
+    // Make sure LS is empty before the test.
+    $.jStorage.deleteKey(slidesListStorageKey);
+    var slidesList = $.jStorage.get(slidesListStorageKey);
+    expect(slidesList).toBeNull();
+
+    // Create a slide.
+    var dateCreated = new Date();
+    var id = dateCreated.getTime().toString();
+    var slideModel = new Slides.SlideModel({
+      id: id,
+      dateCreated: dateCreated,
+      title: ""
+    });
+
+    Slides.dataContext.init(slidesListStorageKey);
+    Slides.dataContext.saveSlide(slideModel);
+
+    // Should retrieve the saved slide.
+    slidesList = $.jStorage.get(slidesListStorageKey);
+    var expectedSlide = slidesList[0];
+
+    expect(expectedSlide.title === "" ).toBeTruthy();
+
+    // Clean up
+    $.jStorage.deleteKey(slidesListStorageKey);
+
+  });
+
 });

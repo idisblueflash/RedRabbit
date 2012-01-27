@@ -201,16 +201,46 @@ Slides.controller = (function ($, dataContext){
   var slideTitleEditorSel = "[name=slide-title-editor]";
   var slideTypeEditorSel = "[name=slide-type-editor]";
   var currentSlide = null;
+  var saveSlideButtonSel = "#save-slide-button";
 
   var init = function(storageKey){
-    Slides.testHelper.createDummySlides(storageKey);
     dataContext.init(storageKey);
+    // Slides.testHelper.createDummySlides(storageKey);
     var d = $(document);
     d.bind("pagebeforechange", onPageBeforeChange);
     d.bind("pagechange", onPageChange);
+    d.delegate(saveSlideButtonSel, "tap", onSaveSlideButtonTapped);
   };
 
   // Private functions
+  function onSaveSlideButtonTapped (){
+    // Validate slide.
+    var titleEditor = $(slideTitleEditorSel);
+    var typeEditor = $(slideTypeEditorSel);
+    var tempSlide = dataContext.createBlankSlide();
+
+    tempSlide.title = titleEditor.val();
+    tempSlide.type  = typeEditor.val();
+
+    if(tempSlide.isValid){
+      if (null !== currentSlide){
+      currentSlide.title = tempSlide.title;
+      currentSlide.type  = tempSlide.type;
+      } else {
+      currentSlide = tempSlide;
+      }
+
+      dataContext.saveSlide(currentSlide);
+      returnToSlideListPage();
+      } else {
+        // TODO: Inform the user the slide is invalid
+      }
+  }
+
+  function returnToSlideListPage(){
+    $.mobile.changePage("#" + slidesListPageId, { transition: "slide", reverse: true});
+  }
+
   function onPageBeforeChange (event, data){
     if (typeof  data.toPage === "string"){
       var url = $.mobile.path.parseUrl(data.toPage);
@@ -280,7 +310,7 @@ Slides.controller = (function ($, dataContext){
     }
     switch(toPageId){
       case slidesListPageId:
-        resetCurrentSlide();
+        resetCurrentSlide(); // Reset refernece to the slide being edited.
         renderSlidesList();
         break;
       case slideEditorPageId:
