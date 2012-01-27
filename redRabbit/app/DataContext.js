@@ -98,6 +98,12 @@ var Slides = Slides || {};
 
 Slides.dataContext = (function($){
   var slidesList = [];
+  var slidesListStorageKey = "Slides.SlidesList";
+  
+  var init = function(){
+    loadSlidesFromLocalStorage();
+  };
+
   var createBlankSlide = function(){
     var dateCreated = new Date();
     var id = new String(dateCreated.getTime()) + new String(getRandomInt(0,100));
@@ -110,12 +116,21 @@ Slides.dataContext = (function($){
     return slideModel;
   };
 
-
   var getSlidesList = function(){
     return slidesList;
   };
 
+  // Private functions
+  function loadSlidesFromLocalStorage(){
+    var storedSlides = $.jStorage.get(slidesListStorageKey);
+    if(storedSlides !== null){
+      slidesList = storedSlides;
+    } else {
+      slidesList = [];
+    }
+  }
   return {
+    init: init,
     createBlankSlide: createBlankSlide,
     getSlidesList: getSlidesList 
   }

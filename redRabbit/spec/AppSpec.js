@@ -1,4 +1,4 @@
-describe("DataContext Test", function(){
+describe("PPTs.DataContext Test", function(){
 
   var pptsListStorageKey = "PPTs.PPTsListTest";
 
@@ -95,6 +95,9 @@ describe("DataContext Test", function(){
         $.jStorage.deleteKey(pptsListStorageKey);
   });
 
+});
+
+describe("Slides.dataContext Test", function(){
   it("Slides exists in the app", function(){
     expect(Slides.dataContext).toBeDefined();
   });
@@ -110,5 +113,8 @@ describe("DataContext Test", function(){
     expect(blankSlide.type.length === 0 ).toBeTruthy();
   });
 
-});
+  it("Has init function", function(){
+    expect(Slides.dataContext.init).toBeDefined();
+  });
 
+});
