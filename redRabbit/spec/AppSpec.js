@@ -104,5 +104,11 @@ describe("DataContext Test", function(){
     expect(slidesList instanceof Array).toBeTruthy();
   });
 
+  it("Returns a blank slide", function(){
+    var blankSlide = Slides.dataContext.createBlankSlide();
+    expect(blankSlide.title.length === 0 ).toBeTruthy();
+    expect(blankSlide.type.length === 0 ).toBeTruthy();
+  });
+
 });
 

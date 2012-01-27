@@ -68,10 +68,6 @@ PPTs.dataContext = (function($){
     $.mobile.changePage("#" + pptsListPageId, { transition: "slide", reverse: true});
   }
 
-  function getRandomInt(min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
   function loadPPTsFromLocalStorage(){
     var storedPPTs = $.jStorage.get(pptsListStorageKey);
     if(storedPPTs !== null){
@@ -92,15 +88,35 @@ PPTs.dataContext = (function($){
   }
 })(jQuery);
 
+// Private functions
+function getRandomInt(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Slide Handle Parts
 var Slides = Slides || {};
+
 Slides.dataContext = (function($){
   var slidesList = [];
+  var createBlankSlide = function(){
+    var dateCreated = new Date();
+    var id = new String(dateCreated.getTime()) + new String(getRandomInt(0,100));
+    var slideModel = new Slides.SlideModel({
+      id: id,
+      dateCreated: dateCreated,
+      title: "",
+      type: ""
+    }); 
+    return slideModel;
+  };
+
 
   var getSlidesList = function(){
     return slidesList;
   };
 
   return {
+    createBlankSlide: createBlankSlide,
     getSlidesList: getSlidesList 
   }
 })(jQuery);
