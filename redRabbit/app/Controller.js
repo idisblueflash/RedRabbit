@@ -54,7 +54,7 @@ PPTs.controller = (function ($, dataContext){
 
   function onSavePPTButtonTapped(){
 
-    // Validate note.
+    // Validate ppt.
     var titleEditor = $(pptTitleEditorSel);
     var narrativeEditor = $(pptNarrativeEditorSel);
     var tempPPT = dataContext.createBlankPPT();
@@ -124,7 +124,7 @@ PPTs.controller = (function ($, dataContext){
       var pptId = queryStringObj["pptId"];
 
       if (typeof pptId !== "undefined"){
-        // We were passed a note id => We're editing an exsiting ppt.
+        // We were passed a ppt id => We're editing an exsiting ppt.
         var pptsList = dataContext.getPPTsList();
         var pptsCount = pptsList.length;
         var ppt;
@@ -197,21 +197,96 @@ Slides.controller = (function ($, dataContext){
   var slidesListSelector = "#slides-list-content";
   var noSlidesCachedMsg = "<div>No Slides cached.</div>";
   var slidesListPageId = "slides-list-page";
+  var slideEditorPageId = "slide-editor-page";
+  var slideTitleEditorSel = "[name=slide-title-editor]";
+  var slideTypeEditorSel = "[name=slide-type-editor]";
   var currentSlide = null;
 
   var init = function(storageKey){
     Slides.testHelper.createDummySlides(storageKey);
     dataContext.init(storageKey);
     var d = $(document);
+    d.bind("pagebeforechange", onPageBeforeChange);
     d.bind("pagechange", onPageChange);
   };
 
   // Private functions
+  function onPageBeforeChange (event, data){
+    if (typeof  data.toPage === "string"){
+      var url = $.mobile.path.parseUrl(data.toPage);
+      if($.mobile.path.isEmbeddedPage(url)){
+        data.options.queryString = $.mobile.path.parseUrl(url.hash.replace(/^#/, "")).search.replace("?", "");
+      }
+    }
+  }
+
+  function renderSelectedSlide(data){
+    var u = $.mobile.path.parseUrl(data.options.fromPage.context.URL);
+    var re = "^#" + slideEditorPageId;
+    if (u.hash.search(re) !== -1){
+      var queryStringObj = queryStringToObject(data.options.queryString);
+      var titleEditor = $(slideTitleEditorSel);
+      var typeEditor = $(slideTypeEditorSel);
+      var slideId = queryStringObj["slideId"];
+
+      if(typeof slideId !== "undefined"){
+        // We were passed a slide id => We're editing an existing slide.
+        var slidesList = dataContext.getSlidesList();
+        var slidesCount = slidesList.length;
+        var slide;
+
+        for(var i = 0; i < slidesCount; i++){
+          slide = slidesList[i];
+          if(slideId === slide.id){
+            currentSlide = slide;
+            titleEditor.val(currentSlide.title);
+            typeEditor.val(currentSlide.type);
+          }
+        }
+      } else {
+        // We're creating a slide. Reset the fields.
+        titleEditor.val("");
+        typeEditor.val("");
+      }
+      titleEditor.focus();
+    }
+  }
+
+  function queryStringToObject (queryString){
+    var queryStringObj = {};
+    var e;
+    var a = /\+/g; // Replace + symbol with a space
+    var r = /([^&;=]+)=?([^&;]*)/g;
+    var d = function (s) { return decodeURIComponent(s.replace(a, " "));};
+    e = r.exec(queryString);
+    while(e){
+      queryStringObj[d(e[1])] = d(e[2]);
+      e = r.exec(queryString);
+    }
+
+    return queryStringObj;
+  }
+
+  function resetCurrentSlide(){
+    currentSlide = null;
+  }
+
   function onPageChange(event, data){
     var toPageId = data.toPage.attr("id");
+    var fromPageId = null;
+
+    if (data.options.fromPage){
+      fromPageId = data.options.fromPage.attr("id");
+    }
     switch(toPageId){
       case slidesListPageId:
+        resetCurrentSlide();
         renderSlidesList();
+        break;
+      case slideEditorPageId:
+        if (fromPageId === slidesListPageId){
+          renderSelectedSlide(data);
+        }
         break;
     }
   }

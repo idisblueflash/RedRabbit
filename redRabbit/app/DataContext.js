@@ -102,6 +102,7 @@ Slides.dataContext = (function($){
   
   var init = function(storageKey){
     slidesListStorageKey = storageKey;
+    Slides.testHelper.createDummySlides(slidesListStorageKey);
     loadSlidesFromLocalStorage(slidesListStorageKey);
   };
 
