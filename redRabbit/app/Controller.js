@@ -202,6 +202,8 @@ Slides.controller = (function ($, dataContext){
   var slideTypeEditorSel = "[name=slide-type-editor]";
   var currentSlide = null;
   var saveSlideButtonSel = "#save-slide-button";
+  var invalidSlideDlgSel = "#invalid-slide-dialog";
+  var defaultDlgTrsn = { transition: "slideup"} ;
 
   var init = function(storageKey){
     dataContext.init(storageKey);
@@ -222,7 +224,7 @@ Slides.controller = (function ($, dataContext){
     tempSlide.title = titleEditor.val();
     tempSlide.type  = typeEditor.val();
 
-    if(tempSlide.isValid){
+    if(tempSlide.isValid()){
       if (null !== currentSlide){
       currentSlide.title = tempSlide.title;
       currentSlide.type  = tempSlide.type;
@@ -233,7 +235,7 @@ Slides.controller = (function ($, dataContext){
       dataContext.saveSlide(currentSlide);
       returnToSlideListPage();
       } else {
-        // TODO: Inform the user the slide is invalid
+        $.mobile.changePage(invalidSlideDlgSel, defaultDlgTrsn);
       }
   }
 
