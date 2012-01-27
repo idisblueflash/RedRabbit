@@ -20,7 +20,7 @@ PPTs.testHelper = (function(){
 
 Slides.testHelper = (function(){
   var createDummySlides = function(){
-    var slidesListStorageKey = "Slides.SlidesList";
+    var slidesListStorageKey = "Slides.SlidesListTest";
     var slidesCount = 6;
     var slides = [];
 

@@ -98,6 +98,8 @@ describe("PPTs.DataContext Test", function(){
 });
 
 describe("Slides.dataContext Test", function(){
+
+  var slidesListStorageKey = "Slides.SlidesListTest";
   it("Slides exists in the app", function(){
     expect(Slides.dataContext).toBeDefined();
   });
@@ -119,7 +121,7 @@ describe("Slides.dataContext Test", function(){
 
   it("Returns dummy slides saved in local storage", function(){
     Slides.testHelper.createDummySlides();
-    Slides.dataContext.init();
+    Slides.dataContext.init(slidesListStorageKey);
 
     var slidesList = Slides.dataContext.getSlidesList();
     expect(slidesList.length > 0).toBeTruthy();
