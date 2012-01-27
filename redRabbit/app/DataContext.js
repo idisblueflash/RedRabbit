@@ -81,11 +81,6 @@ PPTs.dataContext = (function($){
     }
 
   }
-  function onOKToDeletePPTButtonTapped(){
-    dataContext.deletePPT(currentPPT);
-    returnToPPTListPage();
-  }
-
 
 
   return {

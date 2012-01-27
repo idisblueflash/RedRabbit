@@ -67,7 +67,7 @@ describe("DataContext Test", function(){
   it("Removes a ppt from local storage", function(){
           // Create a ppt.
         var dateCreated = new Date();
-        var id = new String(dateCreated.getTime());
+        var id = new String(dateCreated.getTime()).toString();
         var pptModel = new PPTs.PPTModel({
             id: id,
             dateCreated: dateCreated,
