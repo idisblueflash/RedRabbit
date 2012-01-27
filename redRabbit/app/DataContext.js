@@ -102,7 +102,7 @@ Slides.dataContext = (function($){
   
   var init = function(storageKey){
     slidesListStorageKey = storageKey;
-    Slides.testHelper.createDummySlides(slidesListStorageKey);
+    // Slides.testHelper.createDummySlides(slidesListStorageKey);
     loadSlidesFromLocalStorage(slidesListStorageKey);
   };
 
@@ -120,6 +120,17 @@ Slides.dataContext = (function($){
 
   var getSlidesList = function(){
     return slidesList;
+  };
+
+  var deleteSlide = function(slideModel){
+    var i;
+    for (i = 0; i < slidesList.length; i += 1){
+      if(slidesList[i].id === slideModel.id){
+        slidesList.splice(i, 1);
+        i = slidesList.length;
+      }
+    }
+    saveSlidesToLocalStorage();
   };
 
   // Private functions
@@ -156,6 +167,7 @@ Slides.dataContext = (function($){
   }
   return {
     init: init,
+    deleteSlide: deleteSlide,
     saveSlide: saveSlide,
     createBlankSlide: createBlankSlide,
     getSlidesList: getSlidesList 

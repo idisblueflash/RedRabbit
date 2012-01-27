@@ -218,9 +218,15 @@ Slides.controller = (function ($, dataContext){
     d.bind("pagechange", onPageChange);
     d.delegate(saveSlideButtonSel, "tap", onSaveSlideButtonTapped);
     d.delegate(deleteSlideButtonSel, "tap", onDeleteSlideButtonTapped);
+    d.delegate(okToDeleteSlideButtonSel, "tap", onOKToDeleteSlideButtonTapped);
   };
 
   // Private functions
+
+  function onOKToDeletePPTButtonTapped(){
+    dataContext.deleteSlide(currentSlide);
+    returnToSlidesListPage();
+  }
   
   function onDeleteSlideButtonTapped(){
     if (currentSlide){

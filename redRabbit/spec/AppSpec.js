@@ -156,4 +156,35 @@ describe("Slides.dataContext Test", function(){
 
   });
 
+  it("Removes a slide from local storage", function(){
+    // Create a slide
+    var dateCreated = new Date();
+    var id = new String(dateCreated.getTime()).toString();
+    var slideModel = new Slides.SlideModel({
+      id: id,
+      dateCreated: dateCreated,
+      title: "",
+      type: ""
+    });
+
+    // Start with an empty slides list.
+    var slidesList = [];
+    // Add slide to local storage
+    slidesList.push(slideModel);
+    $.jStorage.set(slidesListStorageKey, slidesList);
+    slidesList = $.jStorage.get(slidesListStorageKey);
+    expect(slidesList.length).toEqual(1);
+
+    // Proceed to delete.
+    Slides.dataContext.init(slidesListStorageKey);
+    Slides.dataContext.deleteSlide(slideModel);
+
+    // Should retrieve empty array
+    slidesList = $.jStorage.get(slidesListStorageKey);
+    expect(slidesList.length).toEqual(0);
+
+    // Clean up
+    $.jStorage.deleteKey(slidesListStorageKey);
+  });
+
 });
