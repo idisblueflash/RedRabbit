@@ -117,4 +117,12 @@ describe("Slides.dataContext Test", function(){
     expect(Slides.dataContext.init).toBeDefined();
   });
 
+  it("Returns dummy slides saved in local storage", function(){
+    Slides.testHelper.createDummySlides();
+    Slides.dataContext.init();
+
+    var slidesList = Slides.dataContext.getSlidesList();
+    expect(slidesList.length > 0).toBeTruthy();
+  });
+
 });
