@@ -4,14 +4,18 @@ PPTs.controller = (function ($, dataContext){
   var pptsListPageId = "ppts-list-page";
   var currentPPT = null;
   var pptEditorPageId = "ppt-editor-page";
+
+  // Editor Block Selector
   var pptTitleEditorSel = "[name=ppt-title-editor]";
   var pptNarrativeEditorSel = "[name=ppt-narrative-editor]";
-  var savePPTButtonSel = "#save-ppt-button";
   var invalidPPTDlgSel = "#invalid-ppt-dialog";
   var defaultDlgTrsn = { transition: "slideup"};
   var confirmDeletePPTDlgSel = "#confirm-delete-ppt-dialog";
-  var deletePPTButtonSel = "#delete-ppt-button";
   var deletePPTContentPlaceholderSel = "#delete-ppt-content-placeholder";
+
+  // Button Selector 
+  var savePPTButtonSel = "#save-ppt-button";
+  var deletePPTButtonSel = "#delete-ppt-button";
   var okToDeletePPTButtonSel = "#ok-to-delete-ppt-button";
 
   var init = function(storageKey) {
