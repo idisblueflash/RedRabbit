@@ -87,9 +87,22 @@
     <div data-role="header" data-position="fixed">
       <a href="#ppt-editor-page" data-icon="back" data-rel="back">Cancel</a>
       <h1>My Slides</h1>
-      <a href="#slide-editor-page" class="ui-btn-right" data-theme="b" data-icon="plus">New</a>
+      <a href="#search-resource-page" class="ui-btn-right" data-theme="b" data-icon="plus">New</a>
     </div>
     <div data-role="content" id="slides-list-content">
+    </div>
+  </div>
+
+  <!-- Search Resource Page-->
+  <div data-role="page" id="search-resource-page" data-title="Search Resource">
+    <div data-role="header" data-position="fixed">
+      <a href="#slides-list-page" data-icon="back" data-rel="back">Cancel</a>
+      <h1>Search in resources</h1>
+    </div>
+    <div data-role="content">
+      <form action="" method="post" id="search-resource-form">
+        <input type="text" name="search-key-editor" id="search-key-editor" value="" placeholder="Key Words to Search"/>
+      </form>
     </div>
   </div>
 
