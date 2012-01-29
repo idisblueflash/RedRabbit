@@ -20,6 +20,8 @@ sub searchPictures{
   my @found_pictures = grep(/$name/, @pictures);
 
     if (@found_pictures){
+      push @outputText, "<li data-role=list-divider>Pictures:</li>";
+
       foreach(@found_pictures){
         # print $q->p("found: $_!");
         my $image_caption = $_; 
