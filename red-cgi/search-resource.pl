@@ -7,25 +7,32 @@ my $q = new CGI;
 my $name = $q->param("search-key-editor");
 
 my @outputText;
-my @pictures = ("apple", "banana", "pineapple", "apple pie");
-my @found_pictures = grep(/$name/, @pictures);
 
 #fullPageTest();
-partPageTest();
+my $picParts = searchPictures();
 
-sub partPageTest{
-  print $q->header;
+#out put the results
+print $q->header;
+print $picParts;
+
+sub searchPictures{
+  my @pictures = ("apple", "banana", "pineapple", "apple pie");
+  my @found_pictures = grep(/$name/, @pictures);
+
     if (@found_pictures){
       foreach(@found_pictures){
         # print $q->p("found: $_!");
-        push @outputText, "found: $_ .";
+        push @outputText, "<li><a href=''> $_</a> </li>";
       }
     } else {
         # print $q->p("Nothing found.");
-        push @outputText, "Nothing found.";
+        push @outputText, "<li>Nothing found.</li>";
     }
     my $return = join(" ", @outputText);
-    print $return;
+    $return = "<ul id=pictures-list data-role=listview >"
+    . $return 
+    . "</ul>";
+    return $return;
 }       
 
 

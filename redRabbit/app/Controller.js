@@ -243,7 +243,7 @@ Slides.controller = (function ($, dataContext){
   function onSearchResourceFormSuccess(data, status){
     var responseText = $.trim(data);
     $("#results-content").html(responseText);
-    $.mobile.changePage("#search-resource-page");
+    $("#pictures-list").listview();
   }
 
   function onSearchResourceFormError(data, status){

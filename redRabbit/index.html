@@ -100,9 +100,11 @@
       <h1>Search in resources</h1>
     </div>
     <div data-role="content">
-        <label for="search-key-editor" class="ui-hidden-accessible">Search Key Input:</label>
+      <div data-role="fieldcontain" class="ui-hide-label" id="search-key-from">
+        <label for="search-key-editor" >Search Key Input:</label>
         <input type="search" name="search-key-editor" id="search-key-input" value="" placeholder="Key Words to Search">
         <button data-theme="b" id="search-key-button" type="submit">Search</button>
+      </div>
       <div id="results-content">
       </div>
     </div>
