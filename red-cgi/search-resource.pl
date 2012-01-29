@@ -22,7 +22,10 @@ sub searchPictures{
     if (@found_pictures){
       foreach(@found_pictures){
         # print $q->p("found: $_!");
-        push @outputText, "<li><a href=''> $_</a> </li>";
+        my $image_caption = $_; 
+        my $image_filename = $_ ;
+        $image_filename =~ s/\ /_/g;
+        push @outputText, "<li><a href=''><img src=../images/thumbnails/$image_filename" . ".jpg class=ui-li-thumb> $_</a> </li>";
       }
     } else {
         # print $q->p("Nothing found.");
