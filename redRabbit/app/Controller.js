@@ -242,7 +242,7 @@ Slides.controller = (function ($, dataContext){
 
   function onSearchResourceFormSuccess(data, status){
     var responseText = $.trim(data);
-    $("#results-content").append(responseText);
+    $("#results-content").html(responseText);
     $.mobile.changePage("#search-resource-page");
   }
 
