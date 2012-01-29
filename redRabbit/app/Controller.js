@@ -209,6 +209,9 @@ Slides.controller = (function ($, dataContext){
   var deleteSlideContentPlaceholderSel = "#delete-slide-content-placeholder";
   var okToDeleteSlideButtonSel = "#ok-to-delete-slide-button";
 
+  var searchResourceFormSel = "#search-resource-form"; 
+  var searchKeyButtonSel = "#search-key-button";
+
 
   var init = function(storageKey){
     dataContext.init(storageKey);
@@ -219,9 +222,33 @@ Slides.controller = (function ($, dataContext){
     d.delegate(saveSlideButtonSel, "tap", onSaveSlideButtonTapped);
     d.delegate(deleteSlideButtonSel, "tap", onDeleteSlideButtonTapped);
     d.delegate(okToDeleteSlideButtonSel, "tap", onOKToDeleteSlideButtonTapped);
+    d.delegate(searchKeyButtonSel, "tap", onSearchKeyButtonTapped);
   };
 
   // Private functions
+  function onSearchKeyButtonTapped(){
+    var formData = $("#search-key-input").serialize();
+    // Submit the form
+    $.ajax({
+      type: "POST",
+      url: "/red-cgi/search-resource.pl",
+      cache: false,
+      data: formData,
+      success: onSearchResourceFormSuccess,
+      error: onSearchResourceFormError
+    });
+    return false;
+  }
+
+  function onSearchResourceFormSuccess(data, status){
+    var responseText = $.trim(data);
+    $("#results-content").append(responseText);
+    $.mobile.changePage("#search-resource-page");
+  }
+
+  function onSearchResourceFormError(data, status){
+  }
+
 
   function onOKToDeleteSlideButtonTapped(){
     dataContext.deleteSlide(currentSlide);
@@ -384,4 +411,5 @@ Slides.controller = (function ($, dataContext){
 $(document).bind("mobileinit", function(){
   PPTs.controller.init("PPTs.PPTsList");
   Slides.controller.init("Slides.SlidesList");
+
 });
