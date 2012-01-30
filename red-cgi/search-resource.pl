@@ -9,9 +9,11 @@ my $name = $q->param("search-key-editor");
 my @outputText;
 
 #fullPageTest();
-&searchPicturesJson($name);
+#&searchPicturesJson($name);
 #&searchPictures($name);
 #&searchVideos($name);
+my @pictures = ("apple", "banana", "pineapple", "apple pie");
+&searchResource($name, "pictures", @pictures);
 
 #<!-- out put the results-->
 print $q->header;
@@ -25,20 +27,33 @@ sub generate_random_string {
     return $res;
 }
 
-sub searchPicturesJson{
+# searchResource()
+#
+# search in resource then return in json format
+#
+# $key    - key words to find
+# $type   - type of words
+# @dicts  - words list which need to find in.
+# 
+# example:
+#  searchResource($key, $type, @dicts);
+# Returns:
+#  json obj 
+sub searchResource{
   my $key = shift;
-  my @pictures = ("apple", "banana", "pineapple", "apple pie");
-  my @found_pictures = grep(/$key/, @pictures);
+  my $type = shift;
+  my @dicts = @_;
+  my @found_items = grep(/$key/, @dicts);
 
-    if (@found_pictures){
+    if (@found_items){
 
-      foreach(@found_pictures){
+      foreach(@found_items){
         my $id = generate_random_string();
         # print $q->p("found: $_!");
         my $image_caption = $_; 
         my $image_filename = $_ ;
         $image_filename =~ s/\ /_/g;
-        push @outputText, "\t{\"id\": \"$id\", \"describe\": \"$_\", \"type\": \"pictuers\", \"filename\": \"../images/thumbnails/$image_filename\"}";
+        push @outputText, "\t{\"id\": \"$id\", \"describe\": \"$_\", \"type\": \"$type\", \"filename\": \"../images/thumbnails/$image_filename\"}";
       }
     } else {
       # nothing found.
