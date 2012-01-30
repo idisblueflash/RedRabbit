@@ -8,17 +8,14 @@ my $name = $q->param("search-key-editor");
 
 my @outputText;
 
-#fullPageTest();
-#&searchPicturesJson($name);
-#&searchPictures($name);
-#&searchVideos($name);
+#<!-- Main -->
 my @pictures = ("apple", "banana", "pineapple", "apple pie");
 &searchResource($name, "pictures", @pictures);
+my @videos= ("bad apple black and white", "apple introducing ipad 2");
 
 #<!-- out put the results-->
 print $q->header;
 print &ulPackageJson();
-#print &ulPackage();
 
 # functions 
 sub generate_random_string {
@@ -67,55 +64,3 @@ sub ulPackageJson(){
     . "\n ]";
     return $return;
 }
-
-sub searchVideos{
-  my $key = shift;
-  my @videos= ("bad apple black and white", "apple introducing ipad 2");
-  my @found_videos= grep(/$key/, @videos);
-
-    push @outputText, "\t<li data-role=list-divider>Videos:</li>";
-    if (@found_videos){
-
-      foreach(@found_videos){
-        # print $q->p("found: $_!");
-        my $video_caption = $_; 
-        my $video_filename = $_ ;
-        $video_filename =~ s/\ /_/g;
-        push @outputText, "\t<li><a href=''><img src=../images/thumbnails/$video_filename" . ".jpg class=ui-li-thumb> $_</a> </li>";
-      }
-    } else {
-        # print $q->p("Nothing found.");
-        push @outputText, "\t<li>Nothing found.</li>";
-    }
-}       
-
-sub ulPackage(){
-    my $return = join("\n", @outputText);
-    $return = "<ul id=founds-list data-role=listview >\n"
-    . $return 
-    . "\n</ul>";
-    return $return;
-}
-
-sub searchPictures{
-  my $key = shift;
-  my @pictures = ("apple", "banana", "pineapple", "apple pie");
-  my @found_pictures = grep(/$key/, @pictures);
-
-    push @outputText, "\t<li data-role=list-divider>Pictures:</li>";
-    if (@found_pictures){
-
-      foreach(@found_pictures){
-        # print $q->p("found: $_!");
-        my $image_caption = $_; 
-        my $image_filename = $_ ;
-        $image_filename =~ s/\ /_/g;
-        push @outputText, "\t<li><a href=''><img src=../images/thumbnails/$image_filename" . ".jpg class=ui-li-thumb> $_</a> </li>";
-      }
-    } else {
-        # print $q->p("Nothing found.");
-        push @outputText, "\t<li>Nothing found.</li>";
-    }
-}       
-
-
