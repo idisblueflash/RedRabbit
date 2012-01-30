@@ -247,6 +247,7 @@ Slides.controller = (function ($, dataContext){
   }
 
   function onSearchResourceFormError(data, status){
+    $("#results-content").html("<p>Network has problem. Please Try again.</p>");
   }
 
 

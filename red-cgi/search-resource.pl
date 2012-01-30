@@ -14,7 +14,7 @@ my @outputText;
 #&searchVideos($name);
 
 #out put the results
-print $q->header;
+#print $q->header;
 print &ulPackageJson();
 #print &ulPackage();
 
