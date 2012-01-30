@@ -253,22 +253,37 @@ Slides.controller = (function ($, dataContext){
     if (foundsList.length === 0){
       $("<p>Found nothing.</p>").appendTo(view);
     } else {
+      var liArray = [];
       var item;
+      var typeGroup;
+      var itemType;
+
       var ul = $("<ul id=\"founds-list\" data-role=\"listview\"></ul>").appendTo(view);
       for (var i = 0; i < foundsList.length; i += 1){
         item = foundsList[i];
-        $("<li>"
+        itemType = item.type;
+
+        if(typeGroup !== itemType){
+          liArray.push("<li data-role=\"list-divider\">" + itemType + "</li>");
+          typeGroup = itemType;
+        }
+
+        liArray.push("<li>"
         + "<a data-url=\"index.html#slide-editor-page?itemId=" + item.id + "\" "
         + "href=\"index.html#slide-editor-page?itemId=" + item.id + "\">"
         + "<img src=\"" + item.filename + "\" class=ui-li-thumb>"
         + item.describe 
         + "</a>"
         + "</li>"
-        ).appendTo(ul);
+        );
+
       }
+      var listItems = liArray.join("");
+      $(listItems).appendTo(ul);
       ul.listview();
     }
   }
+
   function onSearchResourceFormError(data, status){
     $("#results-content").html("<p>Network has problem. Please Try again.</p>");
   }
