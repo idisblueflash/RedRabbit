@@ -234,6 +234,7 @@ Slides.controller = (function ($, dataContext){
       url: "/red-cgi/search-resource.pl",
       cache: false,
       data: formData,
+      dataType: 'json',
       success: onSearchResourceFormSuccess,
       error: onSearchResourceFormError
     });
@@ -241,8 +242,8 @@ Slides.controller = (function ($, dataContext){
   }
 
   function onSearchResourceFormSuccess(data, status){
-    var responseText = $.trim(data);
-    $("#results-content").html(responseText);
+    var founds= data;
+    $("#results-content").html(founds[0].describe);
     $("#founds-list").listview();
   }
 

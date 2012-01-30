@@ -13,8 +13,8 @@ my @outputText;
 #&searchPictures($name);
 #&searchVideos($name);
 
-#out put the results
-#print $q->header;
+#<!-- out put the results-->
+print $q->header;
 print &ulPackageJson();
 #print &ulPackage();
 
@@ -38,7 +38,7 @@ sub searchPicturesJson{
         my $image_caption = $_; 
         my $image_filename = $_ ;
         $image_filename =~ s/\ /_/g;
-        push @outputText, "\t{id: id, describe: '$_', type: 'pictuers', filename: '../images/thumbnails/$image_filename'}";
+        push @outputText, "\t{\"id\": \"$id\", \"describe\": \"$_\", \"type\": \"pictuers\", \"filename\": \"../images/thumbnails/$image_filename\"}";
       }
     } else {
       # nothing found.
