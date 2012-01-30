@@ -12,6 +12,7 @@ my @outputText;
 my @pictures = ("apple", "banana", "pineapple", "apple pie");
 &searchResource($name, "pictures", @pictures);
 my @videos= ("bad apple black and white", "apple introducing ipad 2");
+&searchResource($name, "videos", @videos);
 
 #<!-- out put the results-->
 print $q->header;
