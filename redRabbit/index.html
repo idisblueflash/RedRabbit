@@ -121,10 +121,16 @@
       <form action="" method="post" id="slide-editor-form">
         <label for="slide-title-editor">Title:</label>
         <input type="text" name="slide-title-editor" id="slide-title-editor" value="" />
-        <label for="slide-type-editor">Type:</label>
-        <textarea type="text" name="slide-type-editor" id="slide-type-editor" value=""></textarea>
       </form>
+      <div id="item-details">
+        <img id="item-img" src=""></img>
+        <p id="item-describe"></p>
+        <p id="item-filename"></p>
+        <p id="item-type"></p>
+        <p id="item-id"></p>
+      </div>
     </div>
+
     <div data-role="footer" data-position="fixed" class="ui-bar">
           <a id="delete-slide-button" data-icon="delete" data-transition="slideup" data-rel="dialog">Delete</a>
           <a href="#slide-type-select-page" class="ui-btn-right" data-theme="b" data-icon="grid" >Change</a>

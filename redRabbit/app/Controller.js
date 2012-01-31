@@ -444,6 +444,11 @@ Slides.controller = (function ($, dataContext){
             currentSlide = slide;
             titleEditor.val(currentSlide.title);
             typeEditor.val(currentSlide.type);
+            $("#item-img").attr("src",currentSlide.item.filename);
+            $("#item-describe").html("describe: " + currentSlide.item.describe);
+            $("#item-filename").html("filename: " + currentSlide.item.filename);
+            $("#item-type").html("type: " + currentSlide.item.type);
+            $("#item-id").html("id: " + currentSlide.item.id);
           }
         }
       } else {
