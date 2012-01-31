@@ -445,16 +445,15 @@ Slides.controller = (function ($, dataContext){
             titleEditor.val(currentSlide.title);
             typeEditor.val(currentSlide.type);
             $("#item-img").attr("src",currentSlide.item.filename);
-            $("#item-describe").html("describe: " + currentSlide.item.describe);
-            $("#item-filename").html("filename: " + currentSlide.item.filename);
-            $("#item-type").html("type: " + currentSlide.item.type);
-            $("#item-id").html("id: " + currentSlide.item.id);
+            $("#item-describe").html( currentSlide.item.describe);
+            $("#item-filename").html(currentSlide.item.filename);
+            $("#item-type").html(currentSlide.item.type);
+            $("#item-id").html(currentSlide.item.id);
           }
         }
       } else {
         // We're creating a slide. Reset the fields.
         titleEditor.val("");
-        typeEditor.val("");
       }
       titleEditor.focus();
     }
