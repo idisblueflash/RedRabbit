@@ -198,6 +198,7 @@ Slides.controller = (function ($, dataContext){
   var noSlidesCachedMsg = "<div>No Slides cached.</div>";
   var slidesListPageId = "slides-list-page";
   var slideEditorPageId = "slide-editor-page";
+  var searchResourcePage = "search-resource-page";
   var slideTitleEditorSel = "[name=slide-title-editor]";
   var slideTypeEditorSel = "[name=slide-type-editor]";
   var currentSlide = null;
@@ -240,11 +241,15 @@ Slides.controller = (function ($, dataContext){
     });
     return false;
   }
-
+  
+  var tempItems = [];
   function onSearchResourceFormSuccess(data, status){
     var founds= data;
+    // Create tempItems from data
+    tempItems = data;
     renderFoundsList(founds);
   }
+
 
   function renderFoundsList(foundsList){
     var view = $("#results-content");
@@ -326,9 +331,9 @@ Slides.controller = (function ($, dataContext){
 
       dataContext.saveSlide(currentSlide);
       returnToSlidesListPage();
-      } else {
-        $.mobile.changePage(invalidSlideDlgSel, defaultDlgTrsn);
-      }
+    } else {
+      $.mobile.changePage(invalidSlideDlgSel, defaultDlgTrsn);
+    }
   }
 
   function returnToSlidesListPage(){
@@ -341,6 +346,64 @@ Slides.controller = (function ($, dataContext){
       if($.mobile.path.isEmbeddedPage(url)){
         data.options.queryString = $.mobile.path.parseUrl(url.hash.replace(/^#/, "")).search.replace("?", "");
       }
+    }
+  }
+
+  function renderSelectedItemToSlide(data){
+    var u = $.mobile.path.parseUrl(data.options.fromPage.context.URL);
+    var re = "^#" + slideEditorPageId;
+    if (u.hash.search(re) !== -1){
+      var queryStringObj = queryStringToObject(data.options.queryString);
+      var titleEditor = $(slideTitleEditorSel);
+      var typeEditor = $(slideTypeEditorSel);
+      var itemId = queryStringObj["itemId"];
+
+      if(typeof itemId !== "undefined"){
+        // We were passed a item id => We're editing an existing item.
+        var slidesList = dataContext.getSlidesList();
+        var slidesCount = slidesList.length;
+        var slide;
+
+        // if list is NOT empty
+        if (slidesCount !== 0){
+
+         for(var i = 0; i < slidesCount; i++){
+            slide = slidesList[i];
+            if(slideId === slide.id){
+              currentSlide = slide;
+              titleEditor.val(currentSlide.title);
+              typeEditor.val(currentSlide.type);
+            }
+          }
+        } else {
+          var tempSlide = dataContext.createBlankSlide();
+          // We're creating a slide from item, fill the fields with item datas.
+          if (tempItems.length > 0 ){
+            // when founds some thing
+            for (var i = 0; i < tempItems.length; i ++){
+              if(itemId === tempItems[i].id){
+                // found items with itemId
+                tempSlide.item = tempItems[i];
+                tempSlide.title = tempSlide.item.describe;
+                currentSlide = tempSlide;
+              } else {
+                // alert(" didn't find matched intem in items with itemId");
+              }
+            }
+          } else {
+            // founds nothing when search
+            alert("tempItems is empty, seems your haven't search keywords first.");
+          }
+          titleEditor.val(tempSlide.title);
+          typeEditor.val(tempSlide.item.type);
+        
+        }
+      } else {
+        // We're creating a slide from item, fill the fields with item datas.
+        titleEditor.val("");
+        typeEditor.val("");
+      }
+      titleEditor.focus();
     }
   }
 
@@ -410,6 +473,8 @@ Slides.controller = (function ($, dataContext){
       case slideEditorPageId:
         if (fromPageId === slidesListPageId){
           renderSelectedSlide(data);
+        } else if ( fromPageId === searchResourcePage){
+          renderSelectedItemToSlide(data);
         }
         break;
     }
