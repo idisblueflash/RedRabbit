@@ -367,13 +367,30 @@ Slides.controller = (function ($, dataContext){
         // if list is NOT empty
         if (slidesCount !== 0){
 
+        // search from slidesList
          for(var i = 0; i < slidesCount; i++){
             slide = slidesList[i];
-            if(slideId === slide.id){
+            if(itemId === slide.item.id){ // exist in list
               currentSlide = slide;
               titleEditor.val(currentSlide.title);
-              typeEditor.val(currentSlide.type);
-            }
+              typeEditor.val(currentSlide.item.type);
+            } else { // didn't exist in list, create a new
+              var tempSlide = dataContext.createBlankSlide();
+              // We're creating a slide from item, fill the fields with item datas.
+              if (tempItems.length > 0 ){
+                // when founds some thing
+                for (var i = 0; i < tempItems.length; i ++){
+                  if(itemId === tempItems[i].id){
+                    // found items with itemId
+                    tempSlide.item = tempItems[i];
+                    tempSlide.title = tempSlide.item.describe;
+                    currentSlide = tempSlide;
+                    titleEditor.val(currentSlide.title);
+                    typeEditor.val(currentSlide.item.type);
+                  }
+                }
+              }
+            } 
           }
         } else {
           var tempSlide = dataContext.createBlankSlide();
@@ -396,7 +413,6 @@ Slides.controller = (function ($, dataContext){
           }
           titleEditor.val(tempSlide.title);
           typeEditor.val(tempSlide.item.type);
-        
         }
       } else {
         // We're creating a slide from item, fill the fields with item datas.
