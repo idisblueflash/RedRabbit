@@ -431,6 +431,7 @@ Slides.controller = (function ($, dataContext){
       var titleEditor = $(slideTitleEditorSel);
       var typeEditor = $(slideTypeEditorSel);
       var slideId = queryStringObj["slideId"];
+      var itemDetailsSel = $("#item-details");
 
       if(typeof slideId !== "undefined"){
         // We were passed a slide id => We're editing an existing slide.
@@ -444,16 +445,29 @@ Slides.controller = (function ($, dataContext){
             currentSlide = slide;
             titleEditor.val(currentSlide.title);
             typeEditor.val(currentSlide.type);
-            $("#item-img").attr("src",currentSlide.item.filename);
-            $("#item-describe").html( currentSlide.item.describe);
-            $("#item-filename").html(currentSlide.item.filename);
-            $("#item-type").html(currentSlide.item.type);
-            $("#item-id").html(currentSlide.item.id);
+            itemDetailsSel.empty();
+            itemDetailsSel.append("<img src=\"" + currentSlide.item.filename + "\"/><br>");
+            itemDetailsSel.append(
+            "<div class=\"ui-grid-a\">"
+                + "<a><h3>Describe: </h3>" 
+                + "<p>" + currentSlide.item.describe + "</p></a>"
+            + "</div>"
+            + "<div class=\"ui-grid-a\">"
+            + "<a><h3>Filename: </h3>" + currentSlide.item.filename + "</a>"
+            + "</div>"
+            + "<div class=\"ui-grid-a\">"
+            + "<a><h3>Type: </h3>" + currentSlide.item.type + "<\a>"
+            + "</div>"
+            + "<div class=\"ui-grid-a\">"
+            + "<a><h3>ID: </h3>" + currentSlide.item.id + "<\a>"
+            + "</div>"
+            + "</ul>");
           }
         }
       } else {
         // We're creating a slide. Reset the fields.
         titleEditor.val("");
+        itemDetailsSel.append("<p>No item selected.</p>");
       }
       titleEditor.focus();
     }
